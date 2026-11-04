@@ -45,7 +45,7 @@ function WatchesPage() {
           رجوع
         </Link>
         <img
-          src={nbeLogo.url}
+          src={nbeLogo}
           alt="البنك الأهلي المصري"
           width={1920}
           height={520}
@@ -58,7 +58,7 @@ function WatchesPage() {
         <div className="flex flex-col items-center rounded-2xl border border-border bg-card p-5 text-center shadow-sm sm:flex-row sm:gap-6 sm:p-6 sm:text-right">
           <div className="flex-shrink-0">
             <img
-              src={nbeBadge.url}
+              src={nbeBadge}
               alt="شعار البنك الأهلي المصري"
               width={200}
               height={200}

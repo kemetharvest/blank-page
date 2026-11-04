@@ -78,7 +78,7 @@ function SmsPage() {
     <div dir="rtl" className="flex min-h-screen flex-col bg-muted/40 text-foreground">
       <header className="flex items-center justify-end border-b border-border bg-background px-6 py-4">
         <img
-          src={nbeLogo.url}
+          src={nbeLogo}
           alt="البنك الأهلي المصري"
           width={1920}
           height={520}

@@ -73,7 +73,7 @@ function Landing() {
           English
         </Link>
         <img
-          src={nbeLogo.url}
+          src={nbeLogo}
           alt="البنك الأهلي المصري"
           width={1920}
           height={520}
@@ -189,7 +189,7 @@ function Landing() {
       {/* Footer */}
       <footer className="border-t border-border px-4 py-6 text-center">
         <img
-          src={nbeLogo.url}
+          src={nbeLogo}
           alt="البنك الأهلي المصري"
           width={1920}
           height={520}

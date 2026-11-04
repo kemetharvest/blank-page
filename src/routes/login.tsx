@@ -191,7 +191,7 @@ function Index() {
           {c.switchLang}
         </button>
         <img
-          src={nbeLogo.url}
+          src={nbeLogo}
           alt={c.bankName}
           width={1920}
           height={520}
