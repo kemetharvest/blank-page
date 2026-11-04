@@ -4,7 +4,6 @@ import {
   Check,
   X,
   LogOut,
-  Loader2,
   Inbox,
   Trash2,
   AlertTriangle,
