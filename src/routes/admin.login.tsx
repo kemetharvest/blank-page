@@ -1,9 +1,8 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Loader2, ShieldCheck } from "lucide-react";
-
-const ADMIN_PASSWORD = "223344";
-const STORAGE_KEY = "admin_unlocked";
+import { useServerFn } from "@tanstack/react-start";
+import { getAdminSessionStatus, verifyAdminPassword } from "@/lib/admin-gate.functions";
 
 export const Route = createFileRoute("/admin/login")({
   head: () => ({ meta: [{ title: "Admin Login" }] }),
@@ -12,22 +11,24 @@ export const Route = createFileRoute("/admin/login")({
 
 function AdminLogin() {
   const navigate = useNavigate();
+  const verify = useServerFn(verifyAdminPassword);
+  const checkStatus = useServerFn(getAdminSessionStatus);
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (typeof window !== "undefined" && localStorage.getItem(STORAGE_KEY) === "1") {
-      navigate({ to: "/admin" });
-    }
-  }, [navigate]);
+    checkStatus().then(({ unlocked }) => {
+      if (unlocked) navigate({ to: "/admin" });
+    });
+  }, [checkStatus, navigate]);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError("");
-    if (password === ADMIN_PASSWORD) {
-      localStorage.setItem(STORAGE_KEY, "1");
+    const { ok } = await verify({ data: { password } });
+    if (ok) {
       navigate({ to: "/admin" });
     } else {
       setError("كلمة السر غير صحيحة");
