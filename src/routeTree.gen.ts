@@ -9,27 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WatchesRouteImport } from './routes/watches'
-import { Route as SmsRouteImport } from './routes/sms'
-import { Route as OtpRouteImport } from './routes/otp'
-import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as OtpRouteImport } from './routes/otp'
+import { Route as SmsRouteImport } from './routes/sms'
+import { Route as WatchesRouteImport } from './routes/watches'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 
-const WatchesRoute = WatchesRouteImport.update({
-  id: '/watches',
-  path: '/watches',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SmsRoute = SmsRouteImport.update({
-  id: '/sms',
-  path: '/sms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OtpRoute = OtpRouteImport.update({
-  id: '/otp',
-  path: '/otp',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -37,9 +27,19 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const OtpRoute = OtpRouteImport.update({
+  id: '/otp',
+  path: '/otp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SmsRoute = SmsRouteImport.update({
+  id: '/sms',
+  path: '/sms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WatchesRoute = WatchesRouteImport.update({
+  id: '/watches',
+  path: '/watches',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
@@ -84,13 +84,7 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
-    | '/login'
-    | '/otp'
-    | '/sms'
-    | '/watches'
-    | '/admin/login'
-    | '/admin/'
+    '/' | '/login' | '/otp' | '/sms' | '/watches' | '/admin/login' | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/login' | '/otp' | '/sms' | '/watches' | '/admin/login' | '/admin'
   id:
@@ -116,25 +110,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/watches': {
-      id: '/watches'
-      path: '/watches'
-      fullPath: '/watches'
-      preLoaderRoute: typeof WatchesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sms': {
-      id: '/sms'
-      path: '/sms'
-      fullPath: '/sms'
-      preLoaderRoute: typeof SmsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/otp': {
-      id: '/otp'
-      path: '/otp'
-      fullPath: '/otp'
-      preLoaderRoute: typeof OtpRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -144,11 +124,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/otp': {
+      id: '/otp'
+      path: '/otp'
+      fullPath: '/otp'
+      preLoaderRoute: typeof OtpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sms': {
+      id: '/sms'
+      path: '/sms'
+      fullPath: '/sms'
+      preLoaderRoute: typeof SmsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/watches': {
+      id: '/watches'
+      path: '/watches'
+      fullPath: '/watches'
+      preLoaderRoute: typeof WatchesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/': {
