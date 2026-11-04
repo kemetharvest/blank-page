@@ -54,6 +54,7 @@ const isOnline = (s: SessionRow) => Date.now() - new Date(s.updated_at).getTime(
 
 function AdminDashboard() {
   const navigate = useNavigate();
+  const lockAdminFn = useServerFn(lockAdmin);
   const [sessions, setSessions] = useState<SessionRow[]>([]);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [openIds, setOpenIds] = useState<Set<string>>(new Set());
@@ -160,10 +161,6 @@ function AdminDashboard() {
   async function signOut() {
     await lockAdminFn();
     navigate({ to: "/admin/login" });
-  }
-
-  if (false) {
-    return null;
   }
 
   return (
