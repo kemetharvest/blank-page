@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Star } from "lucide-react";
-import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
-import nbeBadge from "@/assets/nbe-logo-badge.png.asset.json";
+import nbeLogo from "@/assets/nbe-logo-full.png";
+import nbeBadge from "@/assets/nbe-logo-badge.png";
 import watchRoseGold from "@/assets/watch-rosegold.png";
 import watchMidnight from "@/assets/watch-midnight.png";
 import watchSilver from "@/assets/watch-silver.png";
