@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
-import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
+import nbeLogo from "@/assets/nbe-logo-full.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useSessionRedirect } from "@/hooks/use-session-redirect";
 
@@ -78,7 +78,7 @@ function OtpPage() {
     return (
       <div dir="rtl" className="flex min-h-screen flex-col bg-background text-foreground">
         <header className="flex items-center justify-end border-b border-border px-6 py-4">
-          <img src={nbeLogo.url} alt="البنك الأهلي المصري" width={1920} height={520} className="h-9 w-auto object-contain md:h-11" />
+          <img src={nbeLogo} alt="البنك الأهلي المصري" width={1920} height={520} className="h-9 w-auto object-contain md:h-11" />
         </header>
         <main className="flex flex-1 flex-col items-center justify-center px-4 text-center">
           <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-green-600">
@@ -95,7 +95,7 @@ function OtpPage() {
     <div dir="rtl" className="flex min-h-screen flex-col bg-muted/40 text-foreground">
       <header className="flex items-center justify-end border-b border-border bg-background px-6 py-4">
         <img
-          src={nbeLogo.url}
+          src={nbeLogo}
           alt="البنك الأهلي المصري"
           width={1920}
           height={520}

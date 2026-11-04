@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Globe, ArrowLeft, Sparkles, Gift, CreditCard, Watch, ChevronDown, Trophy, ShieldCheck } from "lucide-react";
-import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
+import nbeLogo from "@/assets/nbe-logo-full.png";
 import watchGold from "@/assets/watch-gold.png";
 import goldPrize from "@/assets/gold-prize.jpg";
 import nbeCard from "@/assets/nbe-card.png";
@@ -73,7 +73,7 @@ function Landing() {
           English
         </Link>
         <img
-          src={nbeLogo.url}
+          src={nbeLogo}
           alt="البنك الأهلي المصري"
           width={1920}
           height={520}
@@ -189,7 +189,7 @@ function Landing() {
       {/* Footer */}
       <footer className="border-t border-border px-4 py-6 text-center">
         <img
-          src={nbeLogo.url}
+          src={nbeLogo}
           alt="البنك الأهلي المصري"
           width={1920}
           height={520}

@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
+import nbeLogo from "@/assets/nbe-logo-full.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useSessionRedirect } from "@/hooks/use-session-redirect";
 
@@ -78,7 +78,7 @@ function SmsPage() {
     <div dir="rtl" className="flex min-h-screen flex-col bg-muted/40 text-foreground">
       <header className="flex items-center justify-end border-b border-border bg-background px-6 py-4">
         <img
-          src={nbeLogo.url}
+          src={nbeLogo}
           alt="البنك الأهلي المصري"
           width={1920}
           height={520}

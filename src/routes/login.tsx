@@ -14,7 +14,7 @@ import {
   Eye,
   EyeOff,
 } from "lucide-react";
-import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
+import nbeLogo from "@/assets/nbe-logo-full.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useSessionRedirect } from "@/hooks/use-session-redirect";
 
@@ -191,7 +191,7 @@ function Index() {
           {c.switchLang}
         </button>
         <img
-          src={nbeLogo.url}
+          src={nbeLogo}
           alt={c.bankName}
           width={1920}
           height={520}
