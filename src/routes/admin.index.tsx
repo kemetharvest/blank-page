@@ -15,11 +15,12 @@ import {
   Link as LinkIcon,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-
-const STORAGE_KEY = "admin_unlocked";
+import { useServerFn } from "@tanstack/react-start";
+import { lockAdmin, requireAdminSession } from "@/lib/admin-gate.functions";
 
 export const Route = createFileRoute("/admin/")({
   head: () => ({ meta: [{ title: "لوحة المحادثات" }] }),
+  loader: () => requireAdminSession(),
   component: AdminDashboard,
 });
 
@@ -53,7 +54,6 @@ const isOnline = (s: SessionRow) => Date.now() - new Date(s.updated_at).getTime(
 
 function AdminDashboard() {
   const navigate = useNavigate();
-  const [authChecked, setAuthChecked] = useState(false);
   const [sessions, setSessions] = useState<SessionRow[]>([]);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [openIds, setOpenIds] = useState<Set<string>>(new Set());
@@ -61,16 +61,6 @@ function AdminDashboard() {
   const [, force] = useState(0);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (localStorage.getItem(STORAGE_KEY) !== "1") {
-      navigate({ to: "/admin/login" });
-      return;
-    }
-    setAuthChecked(true);
-  }, [navigate]);
-
-  useEffect(() => {
-    if (!authChecked) return;
     let active = true;
 
     supabase
@@ -108,7 +98,7 @@ function AdminDashboard() {
       supabase.removeChannel(channel);
       clearInterval(tick);
     };
-  }, [authChecked]);
+  }, []);
 
   const onlineCount = useMemo(() => sessions.filter(isOnline).length, [sessions]);
 
@@ -167,17 +157,13 @@ function AdminDashboard() {
     await supabase.from("sessions").delete().neq("id", "00000000-0000-0000-0000-000000000000");
   }
 
-  function signOut() {
-    localStorage.removeItem(STORAGE_KEY);
+  async function signOut() {
+    await lockAdminFn();
     navigate({ to: "/admin/login" });
   }
 
-  if (!authChecked) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-50">
-        <Loader2 className="h-6 w-6 animate-spin text-slate-400" />
-      </div>
-    );
+  if (false) {
+    return null;
   }
 
   return (
